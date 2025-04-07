@@ -1,11 +1,13 @@
 ```markdown
 # Research Paper Theme Extractor (GUI)
 
+<div align="center">
+  <img src="https://github.com/Samfrigginsen/Research-paper-theme-extractor/blob/main/fsd.png?raw=true" alt="GUI Screenshot" width="600">
+</div>
+
 A PyQt6-based application for analyzing research papers to extract themes using:
 - **Keyword matching** for single PDF analysis
 - **LDA topic modeling** for multi-file analysis
-
-![Image Alt](https://github.com/Samfrigginsen/Research-paper-theme-extractor/blob/main/fsd.png?raw=true)
 
 ## Features
 - **Dual Analysis Modes**:
