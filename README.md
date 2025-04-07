@@ -1,71 +1,84 @@
-\boxed{
 ```markdown
-# Theme Extractor GUI Application
+# Research Paper Theme Extractor (GUI)
 
-A PyQt6-based tool for analyzing research papers to extract themes using keyword matching (single file) and LDA topic modeling (multiple files).
+A PyQt6-based application for analyzing research papers to extract themes using:
+- **Keyword matching** for single PDF analysis
+- **LDA topic modeling** for multi-file analysis
+
+![Image Alt](https://github.com/Samfrigginsen/Research-paper-theme-extractor/blob/main/fsd.png?raw=true)
 
 ## Features
-- Single file analysis with keyword matching
-- Multi-file analysis using LDA topic modeling
-- PDF text extraction with multiple fallback methods
-- Progress tracking and result export to Excel
-- CSV input support for pre-processed text
+- **Dual Analysis Modes**:
+  - Single PDF analysis with keyword matching
+  - Multi-file analysis with LDA topic modeling
+- **Flexible Input**:
+  - Process individual PDFs
+  - Analyze folders of PDFs
+  - Use pre-processed CSV files
+- **Smart Output**:
+  - In-app results display
+  - Excel exports with timestamps
+  - Coherence score reporting
+- **Robust PDF Handling**:
+  - Multiple text extraction fallback methods
+  - Error logging and recovery
 
 ## Installation
-1. Clone repository:
+
+1. **Clone Repository**
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/yourusername/theme-extractor-gui.git
 cd theme-extractor-gui
 ```
 
-2. Install dependencies:
+2. **Set Up Virtual Environment**
+```bash
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
+```
+
+3. **Install Dependencies**
 ```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-## Requirements
-- Python 3.7+
-- PyQt6
-- pandas
-- PyPDF2
-- spaCy
-- gensim
-- python-dateutil
-
 ## Usage
-### From Source
+
+1. **Launch Application**
 ```bash
 python theme_extractor_gui.py
 ```
 
-### As Executable
-1. Build with PyInstaller:
-```bash
-pyinstaller --onefile --windowed theme_extractor_gui.py
-```
+2. **Choose Analysis Mode**:
+   - 🗂️ **Folder Mode**: Analyze multiple PDFs
+     1. Click "Analyze Folder"
+     2. Select PDF folder
+     3. Set number of themes (default: 12)
+   - 📄 **Single File Mode**: Analyze individual PDFs
+     1. Click "Analyze File"
+     2. Select PDF file
 
-2. Run from `dist` folder:
-```bash
-./dist/theme_extractor_gui.exe
-```
+3. **View Results**:
+   - Results display in application
+   - Excel file saved to source folder:
+     `extracted_themes_YYYYMMDD_HHMMSS.xlsx`
 
-## Features
-- Single File Mode: 
-  - Upload individual PDFs
-  - Keyword-based theme matching
-- Multi-File Mode:
-  - Process folders of PDFs
-  - Automatic theme detection (LDA)
-  - Adjustable number of themes
-- Results:
-  - In-app display
-  - Excel export with timestamps
-  - Coherence scores for LDA models
 
-## Project Structure
-- `theme_extractor_gui.py`: Main application window and GUI logic
-- `theme_extractor.py`: Core text processing and analysis module
-  - Preprocessing pipeline
-  - Theme definitions (THEMES dictionary)
-  - LDA model handling
+## Requirements
+- Python 3.7+
+- PyQt6 >= 6.0
+- pandas >= 1.3
+- PyPDF2 >= 2.0
+- spaCy >= 3.0
+- gensim >= 4.0
+
+
+## Notes
+- Default LDA topics: 12 (adjust via number spinner)
+- Processing time varies by paper count/length
+- Includes multiple PDF text extraction fallback methods
+- Coherence score shown for LDA model validation
