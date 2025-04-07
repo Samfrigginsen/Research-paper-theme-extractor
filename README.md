@@ -1,63 +1,71 @@
-# Research Paper Theme Extractor
+\boxed{
+```markdown
+# Theme Extractor GUI Application
 
-This script extracts dominant themes from research papers using topic modeling techniques. It processes papers from an Excel file and outputs a CSV file containing the paper titles and their corresponding themes.
+A PyQt6-based tool for analyzing research papers to extract themes using keyword matching (single file) and LDA topic modeling (multiple files).
 
-## Prerequisites
-
-- Python 3.x
-- Excel file containing research papers with columns for Title and Abstract
+## Features
+- Single file analysis with keyword matching
+- Multi-file analysis using LDA topic modeling
+- PDF text extraction with multiple fallback methods
+- Progress tracking and result export to Excel
+- CSV input support for pre-processed text
 
 ## Installation
-
-1. Create a virtual environment (recommended):
-
+1. Clone repository:
 ```bash
-python -m venv theme_env
-# On Windows:
-theme_env\Scripts\activate
-# On Unix or MacOS:
-source theme_env/bin/activate
+git clone [your-repository-url]
+cd theme-extractor-gui
 ```
 
-2. Install required packages:
-
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
-```
-
-3. Download the spaCy language model:
-
-```bash
 python -m spacy download en_core_web_sm
 ```
 
+## Requirements
+- Python 3.7+
+- PyQt6
+- pandas
+- PyPDF2
+- spaCy
+- gensim
+- python-dateutil
+
 ## Usage
-
-1. Place your Excel file named `teacher vs ai papers.xlsx` in the same directory as the script.
-
-2. Run the script:
-
+### From Source
 ```bash
-python theme_extractor.py
+python theme_extractor_gui.py
 ```
 
-3. The script will:
-   - Read the Excel file
-   - Preprocess the text (combining title and abstract)
-   - Perform topic modeling using LDA
-   - Extract dominant themes
-   - Save results to `extracted_themes.csv`
+### As Executable
+1. Build with PyInstaller:
+```bash
+pyinstaller --onefile --windowed theme_extractor_gui.py
+```
 
-## Output
+2. Run from `dist` folder:
+```bash
+./dist/theme_extractor_gui.exe
+```
 
-The script generates a CSV file (`extracted_themes.csv`) containing:
+## Features
+- Single File Mode: 
+  - Upload individual PDFs
+  - Keyword-based theme matching
+- Multi-File Mode:
+  - Process folders of PDFs
+  - Automatic theme detection (LDA)
+  - Adjustable number of themes
+- Results:
+  - In-app display
+  - Excel export with timestamps
+  - Coherence scores for LDA models
 
-- Paper Title
-- Extracted Theme (based on dominant topic keywords)
-
-## Notes
-
-- The script uses LDA (Latent Dirichlet Allocation) for topic modeling
-- Default number of topics is set to 12 (can be adjusted in the script)
-- The coherence score is calculated and displayed during execution
-- Processing time depends on the number of papers and their length
+## Project Structure
+- `theme_extractor_gui.py`: Main application window and GUI logic
+- `theme_extractor.py`: Core text processing and analysis module
+  - Preprocessing pipeline
+  - Theme definitions (THEMES dictionary)
+  - LDA model handling
